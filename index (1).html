@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Link Sharing with QR Code</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    #qrCode {
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    #qrCode canvas {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Link Sharing with QR Code</h2>
+    <div class="input-group">
+      <label for="linkInput">Enter a URL to share:</label>
+      <input type="text" id="linkInput" placeholder="https://yourlinkhere.com">
+      <button onclick="generateQRCode()">Generate QR Code</button>
+    </div>
+    <div id="qrCode">
+      <p>Your QR Code will appear here.</p>
+    </div>
+  </div>
+
+  <script>
+    function generateQRCode() {
+      const link = document.getElementById("linkInput").value;
+      const qrCodeDiv = document.getElementById("qrCode");
+
+      if (!link.trim()) {
+        qrCodeDiv.innerHTML = "<p style='color: red;'>Please enter a valid URL.</p>";
+        return;
+      }
+
+      qrCodeDiv.innerHTML = ""; // Clear previous QR code
+      QRCode.toCanvas(qrCodeDiv, link, { width: 200 }, function (error) {
+        if (error) {
+          console.error(error);
+          qrCodeDiv.innerHTML = "<p style='color: red;'>Error generating QR Code.</p>";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
